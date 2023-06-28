@@ -1,31 +1,49 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import { BiEditAlt } from "react-icons/bi"
 import { AiOutlineDelete } from "react-icons/ai"
 
 const StudentsList = () => {
 
-  const deleteData = (index) => {
-    const updatedData = [...users];
-    updatedData.splice(index, 1);
-    setUsers(updatedData);
-  };
+
 
   const [search, setSearch] = useState('')
-
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
-  const handleReset = () => {
-    setUsers("");
+  const [blogPosts, setBlogPosts] = useState(users);
 
-  };
+  // const deleteData = (index) => {
+  //   const updatedData = [...users];
+  //   updatedData.splice(index, 1);
+  //   setUsers(updatedData);
+  // };
 
-  useEffect(() => {
+  const deleteUser = (index) => {
+    const headers = {
+      'Authorization': 'Bearer my-token',
+      'My-Custom-Header': 'foobar'
+    };
+    axios.delete('https://dummyjson.com/users/1', { headers })
+      .then(() => document.write = 'Delete successful');
+
+  }
+
+  function loadUsers() {
     axios.get('https://dummyjson.com/users')
       .then(res => setUsers(res.data.users))
+  }
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    loadUsers(0, 4, 0, "search")
 
+  }
+  useEffect(() => {
+    loadUsers()
   }, [])
+
 
   return (
     <div className='w-full h-full flex flex-col'>
@@ -36,7 +54,7 @@ const StudentsList = () => {
 
         </div>
 
-        <div className='flex justify-center items-center mr-[5%]'>
+        <form className='flex justify-center items-center mr-[5%]'>
           {search}
           <input
             value={search}
@@ -48,7 +66,7 @@ const StudentsList = () => {
           />
           <button className='w-[199px] h-[44px] flex justify-center items-center bg-[#FEAF00] rounded-[4px] text-[#FFFFFF]'>ADD NEW STUDENT</button>
 
-        </div>
+        </form>
 
       </div>
 
@@ -73,15 +91,18 @@ const StudentsList = () => {
               <th scope="col" className="text-sm font-medium  px-6 py-4">
                 Company Name
               </th>
-              {users && <button className="flex justify-center items-center font-bold mt-1 text-sm  px-6 py-4 bg-red-800 rounded-xl w-16 h-12"
+              {users && <button className="flex justify-center items-center font-bold mt-1 text-sm  px-6 py-4 bg-red-800 rounded-xl w-16 h-10"
 
-                onClick={() => handleReset()}> Delete All
+                onClick={() => deleteUser()}> Delete All
               </button>}
 
             </tr>
           </thead>
 
+
           <tbody>
+
+
             {users && users.map((users, index) => (
 
 
@@ -110,7 +131,7 @@ const StudentsList = () => {
 
                   <BiEditAlt size={19} className='text-[#FEAF00] cursor-pointer' />
 
-                  <AiOutlineDelete size={19} className='text-[#FEAF00] cursor-pointer' onClick={(index) => deleteData(index)} />
+                  <AiOutlineDelete size={19} className='text-[#FEAF00] cursor-pointer' onClick={(index) => deleteUser(index)} />
 
                 </td>
               </tr>
@@ -119,6 +140,9 @@ const StudentsList = () => {
 
           </tbody>
         </table>
+      
+
+
       </div>
     </div>
   )
