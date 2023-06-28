@@ -1,27 +1,25 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import validation from '../validation/Validation'
 import { Link, useNavigate } from 'react-router-dom';
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
+import {GoogleAuthProvider, createUserWithEmailAndPassword,  signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
 import {auth} from "../firebase"
 import { FcGoogle } from "react-icons/fc"
 import { toast } from 'react-toastify';
+
 const Home = () => {
 
+  const provider = new GoogleAuthProvider();
 
   const [signUp, setSignUp] = useState(true);  
   const [authData, setAuthData] = useState({ email: "", password: "" })
 
   const [values] = useState({ email: "", password: "" })
 
-  const [email, setEmail] = useState("");
-  const [pasword, setPassword] = useState("");
   const [errors, setError] = useState({})
 
-  const navigate = useNavigate();
+ 
   
-  // function handleChange(e) {
-  //   setValues({...values, [e.target.name]: e.target.value});
-  // };
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -54,11 +52,26 @@ const Home = () => {
        }
     }
   }
+  const googleLogin = async() => {
+    try {
+    const data = await signInWithPopup(auth, provider) 
+    const credential = GoogleAuthProvider.credentialFromResult(data);
+    const token = credential.accessToken;
+    const user = data.user 
+    if(user) {
+      window.location = "/dashboard"
+    }
 
+    } catch (error) {
+      const credential = GoogleAuthProvider.credentialFromError(error)
+      toast.error(credential)
+    }
+
+  }
   return (
     <div className='w-full h-full flex bg-[#FEAF00]'>
 
-      <div className='w-[475px] h-[550px] relative bg-white rounded-lg  justify-center items-center mx-auto m-16 text-center '>
+      <div className='w-[475px] h-[600px] relative bg-white rounded-lg  justify-center items-center mx-auto m-16 text-center '>
 
         <div className='flex flex-col'>
           <h1 className='text-black text-[32px] font-bold font-Montserrat mt-10 border-l-4 border-[#F8D442] ml-[15%] mr-[15%] 
@@ -112,13 +125,20 @@ const Home = () => {
 
               {/* section3 */}
               <div className='w-[90%] mx-auto mt-6  overflow-hidden'>
-                <div className='w-full ml-4 mx-auto h-[44px] bg-[#FEAF00] flex justify-center items-center'>
+                <div className='w-[100%]  mx-auto h-[44px] bg-[#FEAF00] flex justify-center items-center
+                
+                text-white  hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900'>
                   <div onClick={authFunc} className=' text-[14px] text-[#FFFFFF] font-Montserrat '>{signUp ? "REGİSTER": "LOGIN"}</div>
 
                 </div>
-               
-            
+                <div 
+                onClick={googleLogin}
+                className='w-[100%] mt-2 mx-auto h-[44px] flex justify-center items-center 
+                text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+                  Google ile giriş yap
+                  </div>
 
+          
                 <div className='w-full mt-2 text-[14px] flex flex-col justify-center items-center gap-x-1'>
                   <div className='font-Montserrat font-bold'>
                   <p onClick={()=> setSignUp(!signUp)}>{signUp ? "Daha önceden kayıt oldunuz mu?" :"Kayıt olmak mı istiyorsun?"} </p>
@@ -127,28 +147,14 @@ const Home = () => {
                   <div className='flex gap-x-2'>
                   <button className='text-[14px] text-[#6C6C6C] font-Montserrat font-normal'>Forgot your password?</button>
                   <button className='text-[14px] text-[#FEAF00] font-Montserrat font-semibold'>Reset Password</button>
-                  </div>
-                 
-                </div>
-             
-
+                  </div>                 
+               </div>          
               </div>
-
             </div>
-
-
-          </form>
-
-
-          
+          </form>         
         </div>
-
-
       </div>
-
     </div>
-
-
   )
 
 }

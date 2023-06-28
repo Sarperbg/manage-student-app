@@ -8,9 +8,20 @@ import { FiSettings } from "react-icons/fi"
 import { HiOutlineLogout } from "react-icons/hi"
 import { Link } from 'react-router-dom';
 import avatar from "../assets/avatar.png"
-
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase'
+import { toast } from 'react-toastify'
 
 const Sidebar = () => {
+
+    const logOutFunc = async () => {
+        toast.success('Çıkış işlemi gerçekleştiriliyor...')
+        await signOut(auth)
+        setTimeout(() => {
+            window.location = "/"
+
+        }, 2000);
+    }
     return (
         <div className='h-full bg-[#f2ddc6] '>
             <div className='flex flex-col h-[900px] w-[270px]  bg-[#f2ddc6] justify-start gap-24 '>
@@ -18,8 +29,7 @@ const Sidebar = () => {
                 {/* section1 */}
                 <div className='flex flex-col '>
 
-                    <h1 className='text-black text-[20px] font-bold font-Montserrat mt-4 border-l-4 border-[#F8D442] ml-[12%] mr-[12%] 
-whitespace-nowrap	'>MANAGE COURSES</h1>
+                    <h1 className='text-black text-[20px] font-bold font-Montserrat mt-4 border-l-4 border-[#F8D442] ml-[12%] mr-[12%] whitespace-nowrap	'>MANAGE COURSES</h1>
 
                     <div className='flex justify-center items-center flex-col '>
                         <img src={avatar} className='w-24 h-24 rounded-full mt-8' />
@@ -67,8 +77,8 @@ whitespace-nowrap	'>MANAGE COURSES</h1>
                 </div>
 
                 {/* section3 */}
-                <div className="w-[193px] h-[41px] mx-auto flex tex-center justify-center items-center mt-4 gap-2 hover:bg-[#FEAF00]">
-                    <h3>Logout</h3>
+                <div className="w-[193px] h-[41px] mx-auto flex text-center justify-center items-center mt-4 gap-2 hover:bg-[#FEAF00]">
+                    <div onClick={logOutFunc}>Logout</div>
                     <HiOutlineLogout size={19} className='flex items-center justify-center ' />
 
                 </div>

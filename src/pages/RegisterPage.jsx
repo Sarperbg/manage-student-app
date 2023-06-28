@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import validation from '../validation/Validation'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc"
 
 const Home = () => {
 
-  const [users, setUsers] = useState();
 
   const [errors, setError] = useState({})
   const [signUp, setSignUp] = useState(true)
