@@ -23,13 +23,13 @@ const Sidebar = () => {
         }, 2000);
     }
     return (
-        <div className='h-full bg-[#f2ddc6] '>
-            <div className='flex flex-col h-[900px] w-[270px]  bg-[#f2ddc6] justify-start gap-24 '>
+        <div className='h-screen w-[270px] bg-[#f2ddc6] '>
+            <div className='flex flex-col  bg-[#f2ddc6] justify-start gap-24 '>
 
                 {/* section1 */}
                 <div className='flex flex-col '>
 
-                    <h1 className='text-black text-[20px] font-bold font-Montserrat mt-4 border-l-4 border-[#F8D442] ml-[12%] mr-[12%] whitespace-nowrap	'>MANAGE COURSES</h1>
+                    <h1 className='flex justify-center text-black text-[18px] font-bold font-Montserrat mt-6 border-l-4 border-[#F8D442] ml-[5%]  whitespace-nowrap'>MANAGE COURSES</h1>
 
                     <div className='flex justify-center items-center flex-col '>
                         <img src={avatar} className='w-24 h-24 rounded-full mt-8' />
@@ -43,7 +43,7 @@ const Sidebar = () => {
 
                 <div className="flex justify-center items-center mt-4">
                     <ul className="flex flex-col text-[14px] font-Montserrat gap-4">
-                        <Link to="/Home" className="w-[193px] font-normal font-Montserrat  h-[41px] hover:bg-[#FEAF00] flex justify-center items-center rounded-[4px] gap-2">
+                        <Link to="/dashboard" className="w-[193px] font-normal font-Montserrat  h-[41px] hover:bg-[#FEAF00] flex justify-center items-center rounded-[4px] gap-2">
                             <AiOutlineHome size={19} className='flex items-center justify-center ' />
                             Home
 

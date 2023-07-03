@@ -7,7 +7,6 @@ const Home = () => {
 
 
   const [errors, setError] = useState({})
-  const [signUp, setSignUp] = useState(true)
   const [values, setValues] = useState({ email: "", password: "" })
   const navigate = useNavigate();
   const [email, setEmail] = useState("");

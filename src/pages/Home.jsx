@@ -69,9 +69,9 @@ const Home = () => {
 
   }
   return (
-    <div className='w-full h-full flex bg-[#FEAF00]'>
+    <div className='w-full h-screen flex bg-gradient-to-r from-[#FEAF00] to-[#F8D442]'>
 
-      <div className='w-[475px] h-[600px] relative bg-white rounded-lg  justify-center items-center mx-auto m-16 text-center '>
+      <div className='w-[475px] h-[600px] relative bg-white rounded-lg  justify-center items-center mx-auto my-auto text-center '>
 
         <div className='flex flex-col'>
           <h1 className='text-black text-[32px] font-bold font-Montserrat mt-10 border-l-4 border-[#F8D442] ml-[15%] mr-[15%] 
@@ -146,7 +146,7 @@ const Home = () => {
                   </div>
                   <div className='flex gap-x-2'>
                   <button className='text-[14px] text-[#6C6C6C] font-Montserrat font-normal'>Forgot your password?</button>
-                  <button className='text-[14px] text-[#FEAF00] font-Montserrat font-semibold'>Reset Password</button>
+                  <button className='text-[14px] text-[#FEAF00] font-Montserrat font-semibold underline'>Reset Password</button>
                   </div>                 
                </div>          
               </div>

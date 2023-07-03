@@ -6,7 +6,7 @@ import { FiUser } from "react-icons/fi"
 
 const Cards = () => {
   return (
-    <div className='flex flex-row gap-8 mt-20 ml-8 flex-wrap'>
+    <div className='w-[1170px] flex flex-row gap-8 mt-20 ml-8 flex-wrap'>
 
       <div className='flex w-[255px] h-[157px] bg-[#F0F9FF] rounded-[8px] '>
         <div className='w-[128px] flex-col ml-8 mt-4 justify-start '>
@@ -44,7 +44,7 @@ const Cards = () => {
 
       <div className='flex w-[255px] h-[157px] bg-[#FEAF00]  rounded-[8px]'>
         <div className='w-[128px] flex-col ml-8 mt-4 justify-start '>
-          <FiUser size={48} className='text-white' />
+          <FiUser size={48} className='text-white relative -left-[6px]' />
           <h1 className='text-white font-Montserrat font-medium text-[14px] mt-4'>Users</h1>
         </div>
         <div className='w-[128px] flex justify-center items-end rounded-[8px] mb-4'>

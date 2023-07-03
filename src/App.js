@@ -6,6 +6,9 @@ import Students from './pages/Students';
 import { ToastContainer } from 'react-toastify';
 import { onAuthStateChanged } from "firebase/auth";
 import {auth} from './firebase'
+import User from "./pages/user/User";
+import AddUser from "./pages/user/AddUser";
+import EditUser from "./pages/user/EditUser";
 
 function App() {
   const [users, setUsers] = useState(null)
@@ -21,7 +24,7 @@ function App() {
     });
   }, [])
   return (
-    <div className="App">
+    <div className="">
 
 
 
@@ -30,6 +33,9 @@ function App() {
         <Route path="/Home" exact element={<Home />} />
         <Route path="/dashboard" exact element={<Dashboard users={users} />} />
         <Route path="/students" exact element={<Students />} />
+        <Route path="/users/:id" exact element={<User />} />
+        <Route path="/students/add-user" exact element={<AddUser />} />
+        <Route path="/students/edit-user" exact element={<EditUser/>} />
 
       </Routes>
       <ToastContainer
