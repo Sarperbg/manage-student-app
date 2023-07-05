@@ -1,9 +1,7 @@
-import React, {  useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import validation from '../validation/Validation'
-import { Link, useNavigate } from 'react-router-dom';
 import {GoogleAuthProvider, createUserWithEmailAndPassword,  signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
 import {auth} from "../firebase"
-import { FcGoogle } from "react-icons/fc"
 import { toast } from 'react-toastify';
 
 const Home = () => {
@@ -18,9 +16,6 @@ const Home = () => {
   const [errors, setError] = useState({})
 
  
-  
-
-
   function handleSubmit(e) {
     e.preventDefault();
     setError(validation(values));
@@ -69,7 +64,8 @@ const Home = () => {
 
   }
   return (
-    <div className='w-full h-screen flex bg-gradient-to-r from-[#FEAF00] to-[#F8D442]'>
+    <div className='w-full h-screen flex bg-gradient-to-r from-[#FEAF00] to-[#F8D442]
+     max-xs:w-4/5 max-xs:mx-auto max-xs:h-4/5'>
 
       <div className='w-[475px] h-[600px] relative bg-white rounded-lg  justify-center items-center mx-auto my-auto text-center '>
 

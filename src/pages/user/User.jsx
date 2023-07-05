@@ -15,10 +15,10 @@ const User = () => {
   const {id} = useParams();
 
   return (
-    <div className='w-full h-full flex justify-center items-center flex-col bg-gradient-to-r from-[#FEAF00] to-[#F8D442]'>
+    <div className='w-full h-screen my-auto flex justify-center items-center flex-col bg-gradient-to-r from-[#FEAF00] to-[#F8D442]'>
       {user && (
         <>
-        <div className='w-[500px] h-[500px] flex justify-center items-center border border-black mt-16 bg-white'>
+        <div className='w-[500px] h-[500px] flex justify-center items-center border border-black m-auto bg-white'>
           <div className='w-5/12 flex flex-col space-y-4'>
             <h2 className='text-black font-semibold font-Montserrat text-2xl border-b border-black'>Name:</h2>
             <h2 className='text-black font-semibold font-Montserrat text-2xl border-b border-black'>Email:</h2>
@@ -37,14 +37,14 @@ const User = () => {
 
 
           </div>
-
         </div>
         </>
       )}
       
-
       <Link to="/students"
-       className='text-black font-semibold font-Montserrat text-2xl border-b border-black mt-8 bg-zinc-400 rounded-xl w-44'>Back To Home</Link>
+       className='flex-col text-black font-semibold font-Montserrat text-2xl flex justify-center 
+       items-center border-b border-black mb-32 bg-zinc-400 rounded-xl w-60 transition-all hover:scale-95'>
+        Back To Home</Link>
     </div>
   )
 }

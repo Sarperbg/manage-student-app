@@ -5,7 +5,7 @@ import Header from '../components/Header'
 
 const Students = () => {
   return (
-    <div className='flex'>
+    <>
      
 
       <div className='flex flex-row'>
@@ -15,9 +15,8 @@ const Students = () => {
       <StudentsList/>
       </div>
      
-      
     </div>
-    </div>
+    </>
   )
 }
 
